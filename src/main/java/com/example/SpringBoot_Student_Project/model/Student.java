@@ -1,7 +1,9 @@
 package com.example.SpringBoot_Student_Project.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public class Student {
     private int std_id;
@@ -13,6 +15,8 @@ public class Student {
         this.s_name = s_name;
         this.s_age = s_age;
     }
+
+
 
     public int getStd_id() {
         return std_id;

@@ -17,19 +17,78 @@ public class StudentService {
 
 
     public List<Student> getMethod(){
-      return stu;
+        return stu;
     }
+
+    public Student getMethodById(int std_id){
+        int ind=0;
+        boolean flag=false;
+        for(int i=0;i<stu.size();i++){
+
+            if(std_id == stu.get(i).getStd_id()){
+                System.out.println("Student Fetched : "+stu.get(i).getStd_id()+stu.get(i));
+                ind=i;
+                flag=true;
+                break;
+            }
+
+        }
+
+if(flag){
+      return stu.get(ind);
+}
+else{
+    return new Student();
+}
+    }
+
 
     public String postMethod(Student s){
-       stu.add(s);
-       return "Added";
+        stu.add(s);
+        return "Student Added Successfully!! "+s;
     }
 
-    public String putMethod(){
-        return "This is a Put Method";
+
+    public String updateMethod(Student s1) {
+        int ind=0;
+        boolean flag=false;
+        for(int i=0;i<stu.size();i++){
+            if(s1.getStd_id()==stu.get(i).getStd_id()){
+                ind=i;
+                flag=true;
+            }
+        }
+        if(flag){
+            stu.set(ind,s1);
+            return "Student Updated Successfully";
+        }
+        else{
+            return "No such Student Exist!!";
+        }
     }
+
 
     public String deleteMethod(){
         return "This is a Delete Method";
     }
+
+    public String deleteMethodById(int stdId) {
+        int ind=0;
+        boolean flag=false;
+        for(int i=0;i<stu.size();i++){
+            if(stdId==stu.get(i).getStd_id()){
+                ind=i;
+                flag=true;
+            }
+        }
+        if(flag){
+            stu.remove(ind);
+            return "Student Deleted successfully!!!";
+        }
+        else{
+            return "No Such Student found!!! ";
+        }
+    }
+
+
 }

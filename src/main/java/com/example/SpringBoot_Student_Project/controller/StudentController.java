@@ -6,34 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RequestMapping("/student")
 @RestController
 public class StudentController {
 
     @Autowired
     StudentService hws;
 
-    @GetMapping("/")
-    public List<Student> hello(){
-        System.out.println("Hello world!!");
+    @GetMapping
+    public List<Student> getMethod(){
         return hws.getMethod();
     }
 
-
-    @PostMapping("/add")
-    public String postMethod(@RequestBody Student s){
-        hws.postMethod(s);
-        return "Student added: " + s;
-
+    @GetMapping("/{std_id}")
+    public Student getMethodById(@PathVariable int std_id){
+        return hws.getMethodById(std_id);
     }
+
+
+    @PostMapping
+    public String postMethod(@RequestBody Student s){
+        return hws.postMethod(s);
+    }
+
 
     @PutMapping
-    public String putMethod(){
-        return hws.putMethod();
+    public String putMethod(@RequestBody Student s1){
+        return hws.updateMethod(s1);
     }
+
+
 
     @DeleteMapping
     public String deleteMethod(){
         return hws.deleteMethod();
+    }
+
+    @DeleteMapping("/{std_id}")
+    public String deleteMethodById(@PathVariable int std_id){
+        return hws.deleteMethodById(std_id);
     }
 }
